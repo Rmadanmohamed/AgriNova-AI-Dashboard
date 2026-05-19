@@ -88,10 +88,10 @@ export default function SustainabilityPage() {
   const totalCarbonReduction = energyData.reduce((s, r) => s + parseFloat(r.CarbonReductionKg || "0"), 0)
   const avgRenewable = energyData.length
     ? (energyData.reduce((s, r) => s + parseFloat(r.RenewableEnergyUsagePct || "0"), 0) / energyData.length).toFixed(1)
-    : "0"
+    : null
   const avgBattery = energyData.length
     ? (energyData.reduce((s, r) => s + parseFloat(r.BatteryLevelPct || "0"), 0) / energyData.length).toFixed(1)
-    : "0"
+    : null
 
   // Energy trend by date
   const energyTrend = (() => {
@@ -121,9 +121,9 @@ export default function SustainabilityPage() {
   }))
 
   const impactSummary = [
-    { icon: Factory, label: "CO₂ Reduced", value: loading ? "..." : `${(totalCarbonReduction / 1000).toFixed(1)}`, unit: "tCO₂e" },
+    { icon: Factory, label: "CO₂ Reduced", value: loading ? "—" : `${(totalCarbonReduction / 1000).toFixed(1)}`, unit: "tCO₂e" },
     { icon: Droplets, label: "Water Saved", value: "45.6K", unit: "Liters" },
-    { icon: Zap, label: "Energy Used", value: loading ? "..." : `${(totalKwh).toFixed(0)}`, unit: "kWh" },
+    { icon: Zap, label: "Energy Used", value: loading ? "—" : `${(totalKwh).toFixed(0)}`, unit: "kWh" },
     { icon: Recycle, label: "Waste Recycled", value: "2.8", unit: "tons" },
     { icon: TreePine, label: "Trees Equivalent", value: "184", unit: "trees" },
   ]
@@ -141,7 +141,7 @@ export default function SustainabilityPage() {
         <div className="grid grid-cols-6 gap-4">
           <StatCard
             title="Carbon Reduction"
-            value={loading ? "..." : `${(totalCarbonReduction / 1000).toFixed(2)}`}
+            value={loading ? "—" : `${(totalCarbonReduction / 1000).toFixed(2)}`}
             valueSuffix=" tCO₂e"
             trend="up"
             icon={<Factory className="h-5 w-5 text-emerald-400" />}
@@ -149,7 +149,7 @@ export default function SustainabilityPage() {
           />
           <StatCard
             title="Energy Consumption"
-            value={loading ? "..." : `${totalKwh.toFixed(0)}`}
+            value={loading ? "—" : `${totalKwh.toFixed(0)}`}
             valueSuffix=" kWh"
             trend="up"
             icon={<Zap className="h-5 w-5 text-yellow-400" />}
@@ -157,7 +157,7 @@ export default function SustainabilityPage() {
           />
           <StatCard
             title="Renewable Energy"
-            value={loading ? "..." : `${avgRenewable}%`}
+            value={loading ? "—" : avgRenewable ? `${avgRenewable}%` : "—"}
             subtitle="of total consumption"
             trend="up"
             icon={<Sun className="h-5 w-5 text-emerald-400" />}
@@ -165,7 +165,7 @@ export default function SustainabilityPage() {
           />
           <StatCard
             title="Battery Level"
-            value={loading ? "..." : `${avgBattery}%`}
+            value={loading ? "—" : avgBattery ? `${avgBattery}%` : "—"}
             subtitle="Avg across farms"
             trend="up"
             icon={<Zap className="h-5 w-5 text-blue-400" />}
@@ -512,7 +512,7 @@ export default function SustainabilityPage() {
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-xl font-bold text-emerald-400">
-              {loading ? "..." : `${avgRenewable}%`}
+              {loading ? "—" : avgRenewable ? `${avgRenewable}%` : "—"}
             </span>
             <span className="text-[10px] text-emerald-400">Renewable</span>
           </div>

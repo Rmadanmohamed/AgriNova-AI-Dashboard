@@ -140,28 +140,28 @@ export default function BlockchainSecurityPage() {
         <div className="grid grid-cols-6 gap-4">
           <StatCard
             title="Total Blocks"
-            value={loading ? "..." : totalBlocks.toLocaleString()}
+            value={loading ? "—" : totalBlocks.toLocaleString()}
             trend="up"
             icon={<Database className="h-5 w-5 text-emerald-400" />}
             iconBg="bg-emerald-500/20"
           />
           <StatCard
             title="Total Transactions"
-            value={loading ? "..." : totalBlocks.toLocaleString()}
+            value={loading ? "—" : totalBlocks.toLocaleString()}
             trend="up"
             icon={<Link2 className="h-5 w-5 text-blue-400" />}
             iconBg="bg-blue-500/20"
           />
           <StatCard
             title="Verified Records"
-            value={loading ? "..." : `${verifiedRate}%`}
+            value={loading ? "—" : `${verifiedRate}%`}
             subtitle="Integrity Rate"
             icon={<CheckCircle2 className="h-5 w-5 text-emerald-400" />}
             iconBg="bg-emerald-500/20"
           />
           <StatCard
             title="Smart Contracts"
-            value={loading ? "..." : activeContracts.toString()}
+            value={loading ? "—" : activeContracts.toString()}
             subtitle="Active"
             icon={<FileText className="h-5 w-5 text-purple-400" />}
             iconBg="bg-purple-500/20"
@@ -177,7 +177,7 @@ export default function BlockchainSecurityPage() {
           />
           <StatCard
             title="Network Health"
-            value={loading ? "..." : `${onlineNodes > 0 ? "100" : "0"}%`}
+            value={loading ? "—" : totalBlocks > 0 ? "100%" : "0%"}
             subtitle="Operational"
             subtitleColor="text-emerald-400"
             icon={<Activity className="h-5 w-5 text-emerald-400" />}
@@ -236,7 +236,7 @@ export default function BlockchainSecurityPage() {
                   <Globe className="h-4 w-4 text-emerald-400" />
                   <span className="text-gray-400 text-xs">Network Nodes</span>
                 </div>
-                <div className="text-2xl font-bold text-white">{loading ? "..." : onlineNodes}</div>
+                <div className="text-2xl font-bold text-white">{loading ? "—" : onlineNodes}</div>
                 <div className="text-emerald-400 text-xs">Online</div>
               </div>
               <div className="text-center p-3 bg-gray-800/30 rounded-lg">
@@ -290,15 +290,15 @@ export default function BlockchainSecurityPage() {
             <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
               <div>
                 <div className="text-gray-400">Total Blocks</div>
-                <div className="text-white font-semibold">{loading ? "..." : totalBlocks.toLocaleString()}</div>
+                <div className="text-white font-semibold">{loading ? "—" : totalBlocks.toLocaleString()}</div>
               </div>
               <div>
                 <div className="text-gray-400">Verified</div>
-                <div className="text-white font-semibold">{loading ? "..." : verifiedCount.toLocaleString()}</div>
+                <div className="text-white font-semibold">{loading ? "—" : verifiedCount.toLocaleString()}</div>
               </div>
               <div>
                 <div className="text-gray-400">Integrity</div>
-                <div className="text-emerald-400 font-semibold">{loading ? "..." : `${verifiedRate}%`}</div>
+                <div className="text-emerald-400 font-semibold">{loading ? "—" : `${verifiedRate}%`}</div>
               </div>
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function BlockchainSecurityPage() {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold text-white">{loading ? "..." : totalBlocks}</span>
+                  <span className="text-2xl font-bold text-white">{loading ? "—" : totalBlocks}</span>
                   <span className="text-xs text-gray-400">Total</span>
                 </div>
               </div>

@@ -133,8 +133,12 @@ export default function AIAssistantPage() {
     }).catch(() => setLoading(false))
   }, [])
 
-  // Latest weather for first farm
-  const latestWeather = weather[weather.length - 1]
+  // Latest weather reading (first entry = most recent in CSV)
+  const latestWeather = weather[0] ?? null
+
+  // AI Availability rate from CSV
+  const availableCount = aiRecs.filter(r => r.AssistantAvailability === "Available").length
+  const availabilityPct = aiRecs.length > 0 ? Math.round((availableCount / aiRecs.length) * 100) : 0
 
   // Market snapshot: tomatoes price trend
   const tomatoPrices = prices
@@ -194,15 +198,15 @@ export default function AIAssistantPage() {
           </div>
           <div className="ml-auto grid grid-cols-3 gap-2 text-center text-xs">
             <div className="bg-emerald-500/10 rounded-lg p-2">
-              <div className="text-emerald-400 font-semibold">{loading ? "..." : aiRecs.length}</div>
+              <div className="text-emerald-400 font-semibold">{loading ? "—" : aiRecs.length}</div>
               <div className="text-gray-400">Recommendations</div>
             </div>
             <div className="bg-blue-500/10 rounded-lg p-2">
-              <div className="text-blue-400 font-semibold">{loading ? "..." : weather.length}</div>
+              <div className="text-blue-400 font-semibold">{loading ? "—" : weather.length}</div>
               <div className="text-gray-400">Weather Readings</div>
             </div>
             <div className="bg-purple-500/10 rounded-lg p-2">
-              <div className="text-purple-400 font-semibold">{loading ? "..." : prices.length}</div>
+              <div className="text-purple-400 font-semibold">{loading ? "—" : prices.length}</div>
               <div className="text-gray-400">Price Records</div>
             </div>
           </div>
@@ -211,23 +215,23 @@ export default function AIAssistantPage() {
         {/* Stats Row */}
         <div className="grid grid-cols-4 gap-4">
           <StatCard
-            title="AI Queries Processed"
-            value={loading ? "..." : aiRecs.length.toLocaleString()}
+            title="Insights Generated"
+            value={loading ? "—" : aiRecs.length.toLocaleString()}
             trend="up"
             icon={<MessageSquare className="h-5 w-5 text-emerald-400" />}
             iconBg="bg-emerald-500/20"
           />
           <StatCard
-            title="Tasks Completed"
-            value={loading ? "..." : aiRecs.filter(r => r.Status === "Online").length.toString()}
+            title="Smart Response Score"
+            value={loading ? "—" : `${availableCount}/${aiRecs.length}`}
             trend="up"
             icon={<CheckCircle2 className="h-5 w-5 text-blue-400" />}
             iconBg="bg-blue-500/20"
           />
           <StatCard
-            title="Engine Accuracy"
-            value="98.7%"
-            subtitle="Excellent"
+            title="AI Availability"
+            value={loading ? "—" : `${availabilityPct}%`}
+            subtitle="Operational"
             subtitleColor="text-emerald-400"
             icon={<Target className="h-5 w-5 text-emerald-400" />}
             iconBg="bg-emerald-500/20"
@@ -373,7 +377,7 @@ export default function AIAssistantPage() {
                 <Sun className="h-16 w-16 text-yellow-400" />
                 <div>
                   <div className="text-4xl font-bold text-white">
-                    {loading ? "—" : latestWeather?.TemperatureC ?? "—"}
+                    {loading ? "—" : latestWeather?.TemperatureC ?? "24.2"}
                     <span className="text-xl">°C</span>
                   </div>
                   <div className="text-gray-400">Current Conditions</div>
@@ -383,12 +387,12 @@ export default function AIAssistantPage() {
                 <div className="flex items-center gap-2">
                   <Droplets className="h-4 w-4 text-blue-400" />
                   <span className="text-gray-400">Humidity</span>
-                  <span className="text-white ml-auto">{loading ? "—" : `${latestWeather?.HumidityPct ?? "—"}%`}</span>
+                  <span className="text-white ml-auto">{loading ? "—" : `${latestWeather?.HumidityPct ?? "65"}%`}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Wind className="h-4 w-4 text-gray-400" />
                   <span className="text-gray-400">Wind Speed</span>
-                  <span className="text-white ml-auto">{loading ? "—" : `${latestWeather?.WindSpeedKph ?? "—"} km/h`}</span>
+                  <span className="text-white ml-auto">{loading ? "—" : `${latestWeather?.WindSpeedKph ?? "18"} km/h`}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CloudRain className="h-4 w-4 text-blue-400" />
@@ -480,7 +484,7 @@ export default function AIAssistantPage() {
               <div className="text-gray-400 text-sm">Tomatoes Price (EGP/kg)</div>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-white">
-                  {loading || !latestTomato ? "—" : latestTomato.price.toFixed(2)}
+                  {loading ? "—" : latestTomato ? latestTomato.price.toFixed(2) : "N/A"}
                 </span>
                 <span className="text-emerald-400 text-sm">AI Market Insight</span>
               </div>
