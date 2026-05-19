@@ -143,7 +143,7 @@ export default function FarmMonitoringPage() {
           iconColor="text-cyan-400"
         />
         <StatCard
-          title="Data Accuracy"
+          title="Sensor Reliability"
           value="98.6%"
           change="2.4%"
           changeType="increase"

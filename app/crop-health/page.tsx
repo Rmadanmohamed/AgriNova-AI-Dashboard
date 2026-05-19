@@ -514,7 +514,7 @@ export default function CropHealthPage() {
             <div className="rounded-lg bg-secondary p-3">
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-blue-400" />
-                <span className="text-xs text-muted-foreground">Model Accuracy</span>
+                <span className="text-xs text-muted-foreground">AI Confidence</span>
               </div>
               <p className="mt-1 text-2xl font-bold text-foreground">98.7%</p>
             </div>
@@ -668,7 +668,7 @@ export default function CropHealthPage() {
         </div>
         <div className="mt-3 space-y-1.5 text-xs">
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Accuracy</span>
+            <span className="text-muted-foreground">Confidence</span>
             <span className="text-foreground">98.7%</span>
           </div>
           <div className="flex justify-between">

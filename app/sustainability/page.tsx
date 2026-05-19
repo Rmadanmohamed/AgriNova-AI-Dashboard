@@ -261,7 +261,7 @@ export default function SustainabilityPage() {
               <span className="text-gray-400 text-sm">Total from data</span>
               <div>
                 <span className="text-emerald-400 font-semibold">
-                  {loading ? "..." : `${totalKwh.toFixed(1)} kWh`}
+                  {loading ? "—" : `${totalKwh.toFixed(1)} kWh`}
                 </span>
                 <span className="text-emerald-400 text-sm ml-2">avg {avgRenewable}% renewable</span>
               </div>
@@ -269,22 +269,22 @@ export default function SustainabilityPage() {
             <div className="mt-4 grid grid-cols-4 gap-2 text-center text-xs">
               <div>
                 <div className="text-gray-400">Farms Monitored</div>
-                <div className="text-white font-semibold">{loading ? "..." : new Set(energyData.map(r => r.FarmID)).size}</div>
+                <div className="text-white font-semibold">{loading ? "—" : new Set(energyData.map(r => r.FarmID)).size}</div>
               </div>
               <div>
                 <div className="text-gray-400">Avg Renewable</div>
-                <div className="text-white font-semibold">{loading ? "..." : `${avgRenewable}%`}</div>
+                <div className="text-white font-semibold">{loading ? "—" : avgRenewable ? `${avgRenewable}%` : "—"}</div>
               </div>
               <div>
                 <div className="text-gray-400">Solar Active</div>
                 <div className="text-white font-semibold">
-                  {loading ? "..." : energyData.filter(r => r.SolarPowerStatus === "Active").length}
+                  {loading ? "—" : energyData.filter(r => r.SolarPowerStatus === "Active").length}
                 </div>
               </div>
               <div>
                 <div className="text-gray-400">Off-Grid</div>
                 <div className="text-emerald-400 font-semibold">
-                  {loading ? "..." : energyData.filter(r => r.OffGridOperationStatus === "Stable").length}
+                  {loading ? "—" : energyData.filter(r => r.OffGridOperationStatus === "Stable").length}
                 </div>
               </div>
             </div>
@@ -317,7 +317,7 @@ export default function SustainabilityPage() {
                 </ResponsiveContainer>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-2xl font-bold text-white">
-                    {loading ? "..." : `${avgRenewable}%`}
+                    {loading ? "—" : avgRenewable ? `${avgRenewable}%` : "—"}
                   </span>
                   <span className="text-xs text-gray-400">Renewable</span>
                 </div>
@@ -362,7 +362,7 @@ export default function SustainabilityPage() {
             <div className="mt-3 p-2 bg-emerald-500/10 rounded-lg flex items-center justify-between">
               <span className="text-gray-400 text-sm">Total Carbon Reduced</span>
               <span className="text-emerald-400 font-semibold">
-                {loading ? "..." : `${(totalCarbonReduction / 1000).toFixed(2)} tCO₂e`}
+                {loading ? "—" : `${(totalCarbonReduction / 1000).toFixed(2)} tCO₂e`}
               </span>
             </div>
           </div>
@@ -399,7 +399,7 @@ export default function SustainabilityPage() {
             <div className="mt-3 p-2 bg-blue-500/10 rounded-lg flex items-center justify-between">
               <span className="text-gray-400 text-sm">Avg Battery Level</span>
               <span className="text-blue-400 font-semibold">
-                {loading ? "..." : `${avgBattery}%`}
+                {loading ? "—" : avgBattery ? `${avgBattery}%` : "—"}
               </span>
             </div>
           </div>

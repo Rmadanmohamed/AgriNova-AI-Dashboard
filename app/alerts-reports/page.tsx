@@ -178,37 +178,37 @@ export default function AlertsReportsPage() {
         {/* Stats Row */}
         <div className="grid grid-cols-5 gap-4">
           <StatCard
-            title="Active Alerts"
-            value={loading ? "..." : totalAlerts.toString()}
+            title="Total Active Alerts"
+            value={loading ? "—" : totalAlerts.toString()}
             trend="up"
             icon={<AlertTriangle className="h-5 w-5 text-red-400" />}
             iconBg="bg-red-500/20"
           />
           <StatCard
-            title="Critical Alerts"
-            value={loading ? "..." : criticalAlerts.toString()}
-            trend="up"
+            title="Critical Issues"
+            value={loading ? "—" : criticalAlerts.toString()}
+            subtitle="Requires immediate attention"
             icon={<AlertCircle className="h-5 w-5 text-red-400" />}
             iconBg="bg-red-500/20"
           />
           <StatCard
             title="Warnings"
-            value={loading ? "..." : warnings.toString()}
-            trend="up"
+            value={loading ? "—" : warnings.toString()}
+            subtitle="Monitor closely"
             icon={<Bell className="h-5 w-5 text-yellow-400" />}
             iconBg="bg-yellow-500/20"
           />
           <StatCard
-            title="Reports Generated"
-            value={loading ? "..." : reports.length.toString()}
+            title="Generated Reports"
+            value={loading ? "—" : reports.length.toString()}
             trend="up"
             icon={<FileText className="h-5 w-5 text-emerald-400" />}
             iconBg="bg-emerald-500/20"
           />
           <StatCard
             title="Auto-Resolved"
-            value={loading ? "..." : autoResolved.toString()}
-            trend="up"
+            value={loading ? "—" : autoResolved.toString()}
+            subtitle="AI handled"
             icon={<CheckCircle2 className="h-5 w-5 text-emerald-400" />}
             iconBg="bg-emerald-500/20"
           />
@@ -242,7 +242,7 @@ export default function AlertsReportsPage() {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold text-white">{loading ? "..." : totalAlerts}</span>
+                  <span className="text-2xl font-bold text-white">{loading ? "—" : totalAlerts}</span>
                   <span className="text-xs text-gray-400">Total Alerts</span>
                 </div>
               </div>

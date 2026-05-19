@@ -135,7 +135,7 @@ export default function OverviewPage() {
       <div className="grid grid-cols-6 gap-4">
         <StatCard
           title="Total Farms"
-          value={loading ? "..." : String(currentFarms)}
+          value={loading ? "—" : String(currentFarms)}
           change="12.5%"
           changeType="increase"
           changeLabel="vs last 7 days"
@@ -153,7 +153,7 @@ export default function OverviewPage() {
         />
         <StatCard
           title="Active IoT Sensors"
-          value={loading ? "..." : String(activeSensors)}
+          value={loading ? "—" : String(activeSensors)}
           change="7.1%"
           changeType="increase"
           changeLabel="vs last 7 days"
@@ -162,7 +162,7 @@ export default function OverviewPage() {
         />
         <StatCard
           title="Active Robots"
-          value={loading ? "..." : String(activeRobots)}
+          value={loading ? "—" : String(activeRobots)}
           change="5.2%"
           changeType="increase"
           changeLabel="vs last 7 days"
@@ -171,7 +171,7 @@ export default function OverviewPage() {
         />
         <StatCard
           title="Active Drones"
-          value={loading ? "..." : String(activeDrones)}
+          value={loading ? "—" : String(activeDrones)}
           change="2.7%"
           changeType="increase"
           changeLabel="vs last 7 days"
@@ -182,7 +182,7 @@ export default function OverviewPage() {
           <p className="text-xs text-muted-foreground">System Health Index</p>
           <div className="mt-1 flex items-baseline gap-1">
             <span className="text-2xl font-bold text-foreground">
-              {loading ? "..." : healthIndex}
+              {loading ? "—" : healthIndex}
             </span>
             <span className="text-sm text-muted-foreground">/100</span>
           </div>
@@ -447,25 +447,25 @@ export default function OverviewPage() {
             <div className="rounded-lg bg-secondary p-3 text-center">
               <p className="text-xs text-muted-foreground">Total Alerts</p>
               <p className="text-2xl font-bold text-foreground">
-                {loading ? "..." : currentAlerts.total}
+                {loading ? "—" : currentAlerts.total}
               </p>
             </div>
             <div className="rounded-lg bg-red-500/10 p-3 text-center">
               <p className="text-xs text-red-400">Critical Alerts</p>
               <p className="text-2xl font-bold text-red-400">
-                {loading ? "..." : currentAlerts.critical}
+                {loading ? "—" : currentAlerts.critical}
               </p>
             </div>
             <div className="rounded-lg bg-amber-500/10 p-3 text-center">
               <p className="text-xs text-amber-400">High Priority</p>
               <p className="text-2xl font-bold text-amber-400">
-                {loading ? "..." : currentAlerts.highPriority}
+                {loading ? "—" : currentAlerts.highPriority}
               </p>
             </div>
             <div className="rounded-lg bg-blue-500/10 p-3 text-center">
               <p className="text-xs text-blue-400">Open Alerts</p>
               <p className="text-2xl font-bold text-blue-400">
-                {loading ? "..." : currentAlerts.open}
+                {loading ? "—" : currentAlerts.open}
               </p>
             </div>
           </div>
