@@ -15,7 +15,7 @@ node_modules
 .DS_Store
 
 # Local Backups and Reports
-Dashboard/
+/Dashboard/
 .next
 out/
 build/
